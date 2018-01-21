@@ -1,0 +1,14 @@
+###### <<ENDBENLOGFUNC
+use Devel::StackTrace;
+my ($ben_package, $ben_filename, $ben_line) = caller;
+Venda->current->log_func({
+    tracing => 1, msg => "BEN - MSG",
+    dumper => {
+        caller => {
+            file => $ben_filename,
+            line => $ben_line,
+        },
+        # stacktrace => Devel::StackTrace->new->as_string,
+    },
+});
+####### >>ENDBENLOGFUNC

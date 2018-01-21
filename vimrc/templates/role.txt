@@ -1,0 +1,44 @@
+package Venda::Objects::Role::Catalogue::Product::ToApp;
+use strict;
+use warnings;
+
+use Moose::Role;
+
+with qw{
+};
+
+=head1 NAME
+
+Venda::Objects::Role::Catalogue::Product::ToApp
+
+=head1 DESCRIPTION
+
+TODO
+
+=head1 SYNOPSIS
+
+with 'CLASS';
+
+=head1 PUBLIC METHODS
+
+=over
+
+=back
+
+=head1 PRIVATE METHODS
+
+=over
+
+=back
+
+=head1 SEE ALSO
+
+L<TODO the method that consumes the role>
+
+=head1 COPYRIGHT
+
+(C) Venda - all rights reserved.
+
+=cut
+
+1;
