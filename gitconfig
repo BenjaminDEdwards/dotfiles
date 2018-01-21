@@ -1,0 +1,30 @@
+[user]
+	name = Ben Edwards
+	email = ben.edwards@benumu.com
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+
+    [color]
+    ui = auto
+    [color "branch"]
+    current = white
+    local = yellow
+    remote = green
+    [color "diff"]
+    meta = yellow 
+    frag = magenta
+    old = red 
+    new = green 
+    [color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[alias]
+    amend = commit -v --amend
+    c = checkout
+    f = fetch
+    s = status
+    l = log --graph
+    v = commit -v
+    m = merge --log --no-ff
