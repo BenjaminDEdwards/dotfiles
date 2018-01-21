@@ -1,0 +1,20 @@
+# bashrc
+# the primary .bashrc file
+# this file will be used to load common functions and source other
+# more complex modules
+
+# Use Ubuntu Standard bash configs
+source ~/.bash/bashrc_default.bash
+
+# Git plugin
+source ~/.bash/.git-completion.bash
+
+# Show the full path in the window tab name
+# \h is host, so \u@\h is user@host
+PS1='[\[\033[1;31m\]$(__git_ps1 "%s")\[\033[0m\] \h \w/]$ '
+export PS1
+
+#Alias Commands
+
+#make ll give human readable file sizes
+alias ll='ls -alh'
