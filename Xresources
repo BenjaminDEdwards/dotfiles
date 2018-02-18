@@ -34,6 +34,9 @@ URxvt.allow_bold:           false
 !!URxvt*font: xft:Monospace:pixelsize=14
 !!URxvt*boldFont: xft:Monospace:pixelsize=14
 
+UXTerm*renderFont: true
+UXTerm*faceName: Monaco
+UXTerm*faceSize: 8
 
 !!URxvt*font:     xft:mono:medium:size=12
 !!xterm*faceName: xft:mono:medium:size=12
