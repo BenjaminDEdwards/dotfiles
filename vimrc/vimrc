@@ -3,14 +3,15 @@ filetype plugin on
 
 set t_Co=256
 
+colorscheme grb256
 
 set smartindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 
 set number
 
@@ -108,3 +109,4 @@ source ~/.vim/libraries/runshellcommand.vim
 if has("gui_running")
     source ~/.vim/gvimrc
 endif
+
