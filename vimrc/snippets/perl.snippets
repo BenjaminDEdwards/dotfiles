@@ -1,10 +1,18 @@
 # #!/usr/bin/perl
 snippet #!
 	#!/usr/bin/perl
-	
 # Hash Pointer
 snippet .
 	 =>
+# debug
+snippet debug
+	# BDE START DEBUG
+	use Data::Dump qw{ dump };
+	print STDERR dump(${1} => ${2} );
+	#BDE END DEBUG
+# diehere
+snippet dhere
+	die "${1:BDE HERE}";
 # Function
 snippet sub
 	sub ${1:function_name} {
