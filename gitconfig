@@ -1,6 +1,5 @@
 [user]
 	name = Ben Edwards
-	email = ben.edwards@benumu.com
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
