@@ -3,8 +3,9 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
-
-    [color]
+[pull]
+  ff = only
+[color]
     ui = auto
     [color "branch"]
     current = white
