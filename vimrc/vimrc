@@ -116,6 +116,7 @@ if has("gui_running")
     source ~/.vim/gvimrc
 endif
 
+
 " FZF settings
 map <C-p> :FZF .<CR>
 let g:fzf_action = {
