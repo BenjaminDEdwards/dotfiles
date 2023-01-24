@@ -21,3 +21,6 @@ alias ll='ls -alh'
 
 #load company specific amendments
 source ~/.bash/company_specific.bash
+
+# load machine specific amendments
+source ~/.bash/machine_specific.bash
