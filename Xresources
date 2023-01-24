@@ -36,7 +36,7 @@ URxvt.allow_bold:           false
 
 UXTerm*renderFont: true
 UXTerm*faceName: Source Code Pro
-UXTerm*faceSize: 8
+UXTerm*faceSize: 10
 
 !!URxvt*font:     xft:mono:medium:size=12
 !!xterm*faceName: xft:mono:medium:size=12
