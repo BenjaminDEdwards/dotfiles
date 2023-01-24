@@ -4,6 +4,7 @@ filetype plugin on
 set t_Co=256
 
 colorscheme grb256
+colorscheme solarized
 
 set smartindent
 set tabstop=2
