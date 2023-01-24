@@ -19,6 +19,7 @@ set number
 set hlsearch
 set incsearch
 set smartcase
+set tags=tags
 
 map   <S-tab>  :tabprevious<cr>:echo @%<cr>
 map   <tab>    :tabnext<cr>:echo @%<cr>
@@ -68,6 +69,8 @@ map <leader>t :ConqueTerm bash<cr>
 map <leader>j :%!python -m json.tool<cr>
 map <leader>p "*p$i
 
+map <C-l> :s/^/#/<cr>/notathing<cr>
+
 " map ; to ; so that ;q does the right thing
 map ; :
 
@@ -113,3 +116,12 @@ if has("gui_running")
     source ~/.vim/gvimrc
 endif
 
+" FZF settings
+map <C-p> :FZF .<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split'
+  \ 'ctrl-h': 'split'
+  \ 'ctrl-v': 'vsplit' }
+
+
+"END
