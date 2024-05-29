@@ -2,6 +2,8 @@ import boto3
 from datetime import datetime
 from dataclasses import dataclass, asdict
 import json
+import os
+import sys
 
 plaintext_file = "/tmp/aws_current_env"
 cache_file = "/tmp/aws_env_cache"
@@ -40,6 +42,18 @@ def fetchResponse():
 
 # iam = boto3.Session().client('iam')
 
+
+if not os.path.isfile(cache_file):
+    cached = fetchResponse()
+
+    with open(plaintext_file, 'w') as file:
+      file.write(cached.env)
+
+    cached_value_dict = asdict(cached)
+    cached_value_json = json.dumps(cached_value_dict, indent=2)
+    with open(cache_file, 'w') as file:
+      file.write(cached_value_json)
+    sys.exit(1)
 
 with open(cache_file, 'r') as file:
   data = json.load(file)  # Load the contents into a dictionary
