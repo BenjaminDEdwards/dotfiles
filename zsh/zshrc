@@ -11,6 +11,8 @@ parse_git_branch() {
 
 get_aws_profile() {
 
+    setopt local_options no_notify no_monitor
+    updateAWSLoginCache.py > /dev/null &
 
     # Check if the file exists
     if [[ -f /tmp/aws_current_env ]]; then
@@ -20,11 +22,6 @@ get_aws_profile() {
         # Return 'ERROR' if the file does not exist
         echo 'ERROR'
     fi
-
-    setopt LOCAL_OPTIONS NO_MONITOR
-    # Run the updateAWSLoginCache.py script in the background
-    updateAWSLoginCache.py &
-
 
 }
 
