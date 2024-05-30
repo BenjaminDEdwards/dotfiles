@@ -15,3 +15,6 @@ get_aws_profile() {
 
 setopt PROMPT_SUBST
 PROMPT='$(get_aws_profile) %9c%{%F{green}%}$(parse_git_branch)%{%F{none}%} $ '
+
+
+# PROMPT='%9c%{%F{green}%}$(parse_git_branch)%{%F{none}%} $ '
