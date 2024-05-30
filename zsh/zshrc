@@ -21,7 +21,11 @@ set-aws() {
     echo "AWS_PROFILE set to $AWS_PROFILE"
 
     rm /tmp/aws_env_cache
+
+    echo "Updating env variables"
+    eval "$(aws configure export-credentials --format env)"
     # Run the updateAws command
+    echo "Refreshing env cache"
     updateAWSLoginCache.py
 }
 
