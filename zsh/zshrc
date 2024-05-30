@@ -11,9 +11,18 @@ parse_git_branch() {
 
 get_aws_profile() {
 
+
+    # Check if the file exists
+    if [[ -f /tmp/aws_env_cache ]]; then
+        # Read the file's content
+        cat /tmp/aws_env_cache
+    else
+        # Return 'ERROR' if the file does not exist
+        echo 'ERROR'
+    fi
+
+    # Run the updateAWSLoginCache.py script in the background
     nohup updateAWSLoginCache.py > /dev/null 2>&1 &
-
-
 
 
 }
