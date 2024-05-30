@@ -11,7 +11,7 @@ parse_git_branch() {
 
 get_aws_profile() {
 
-
+    nohup updateAWSLoginCache.py > /dev/null 2>&1 &
 
 
 
