@@ -13,16 +13,17 @@ get_aws_profile() {
 
 
     # Check if the file exists
-    if [[ -f /tmp/aws_env_cache ]]; then
+    if [[ -f /tmp/aws_current_env ]]; then
         # Read the file's content
-        cat /tmp/aws_env_cache
+        cat /tmp/aws_current_env
     else
         # Return 'ERROR' if the file does not exist
         echo 'ERROR'
     fi
 
+    setopt LOCAL_OPTIONS NO_MONITOR
     # Run the updateAWSLoginCache.py script in the background
-    nohup updateAWSLoginCache.py > /dev/null 2>&1 &
+    updateAWSLoginCache.py &
 
 
 }
