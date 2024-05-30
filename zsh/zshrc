@@ -20,6 +20,7 @@ set-aws() {
     export AWS_PROFILE="$1"
     echo "AWS_PROFILE set to $AWS_PROFILE"
 
+    rm /tmp/aws_env_cache
     # Run the updateAws command
     updateAWSLoginCache.py
 }
