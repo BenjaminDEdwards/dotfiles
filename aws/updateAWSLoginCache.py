@@ -21,6 +21,23 @@ args = parser.parse_args()
 plaintext_file = f'/tmp/aws_current_env_{args.pid}'
 cache_file = f'/tmp/aws_env_cache_{args.pid}'
 
+@dataclass(frozen=True)
+class StringReplace:
+  match: str
+  replace_with: str
+
+def load_string_replace_from_yaml(file_path: str) -> list[StringReplace]:
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as file:
+            data = yaml.safe_load(file)
+            return [StringReplace(**data)]
+    else:
+        return []
+
+def apply_replacements(replacements: list[StringReplace], input_string: str) -> str:
+    for replacement in replacements:
+        input_string = input_string.replace(replacement.match, replacement.replace_with)
+    return input_string
 
 @dataclass(frozen=True)
 class CachedValue:
@@ -29,7 +46,7 @@ class CachedValue:
   generated: str
   success: bool
 
-def fetchResponse():
+def fetchResponse(replacements: list[StringReplace] ):
   try:
     iam = boto3.client('iam')
     paginator = iam.get_paginator('list_account_aliases')
@@ -37,7 +54,7 @@ def fetchResponse():
     for response in paginator.paginate():
       return CachedValue(
         int(now.timestamp()) + 60,
-        response['AccountAliases'][0],
+        apply_replacements( replacements, response['AccountAliases'][0] ),
         now.strftime('%Y-%m-%d %H:%M:%S'),
         True
       )
@@ -57,23 +74,6 @@ def fetchResponse():
     )
 
 
-@dataclass(frozen=True)
-class StringReplace:
-  match: str
-  replace_with: str
-
-def load_string_replace_from_yaml(file_path: str) -> list[StringReplace]:
-    if os.path.exists(file_path):
-        with open(file_path, 'r') as file:
-            data = yaml.safe_load(file)
-            return [StringReplace(**data)]
-    else:
-        return []
-
-def apply_replacements(replacements: list[StringReplace], input_string: str) -> str:
-    for replacement in replacements:
-        input_string = input_string.replace(replacement.match, replacement.replace_with)
-    return input_string
 
 # caller_identity = boto3.Session().client('sts').get_caller_identity()
 # account = caller_identity["Account"]
