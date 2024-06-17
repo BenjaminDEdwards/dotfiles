@@ -9,7 +9,7 @@ parse_git_branch() {
 
 
 
-set-aws() {
+aws-set-env() {
     # Check if exactly one argument is provided
     if [ "$#" -ne 1 ]; then
         echo "Usage: set_aws_profile_and_update <profile_name>"
@@ -26,7 +26,7 @@ set-aws() {
     # eval "$(aws configure export-credentials --format env)"
     # Run the updateAws command
     echo "Refreshing env cache"
-    updateAWSLoginCache.py $$
+    updateAWSLoginCache.py --force $$
 }
 
 
