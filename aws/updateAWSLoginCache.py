@@ -109,8 +109,7 @@ if ( now_ts > cached_value.expires or cached_value.success == False or args.forc
 
   with open(plaintext_file, 'w') as file:
     replaced = apply_replacements(replacements,cached.env)
-    print(f'result: {cached.env} replaed to: {replaced}')
-    file.write(cached.env)
+    file.write(replaced)
 
   cached_value_dict = asdict(cached)
   cached_value_json = json.dumps(cached_value_dict, indent=2)
