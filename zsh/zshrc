@@ -37,10 +37,10 @@ get_aws_profile() {
     # Check if the file exists
     if [[ -f "/tmp/aws_current_env_$$" ]]; then
         # Read the file's content
-        cat "/tmp/aws_current_env_$$"
+        echo "aws: $(cat /tmp/aws_current_env_$$)"
     else
         # Return 'ERROR' if the file does not exist
-        echo 'ERROR'
+        echo "aws: refreshing..." 
     fi
 
 }
