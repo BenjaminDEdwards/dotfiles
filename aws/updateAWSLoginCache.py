@@ -83,7 +83,7 @@ def fetchResponse(replacements: list[StringReplace] ):
 replacements = load_string_replace_from_yaml(args.config)
 
 if not os.path.isfile(cache_file):
-    cached = fetchResponse()
+    cached = fetchResponse(replacements)
 
     with open(plaintext_file, 'w') as file:
       file.write(cached.env)
@@ -105,7 +105,7 @@ now_ts = int(now.timestamp())
 
 if ( now_ts > cached_value.expires or cached_value.success == False or args.force == True ):
   print("Cache is stale, regenerate")
-  cached = fetchResponse()
+  cached = fetchResponse(replacements)
 
   with open(plaintext_file, 'w') as file:
     replaced = apply_replacements(replacements,cached.env)
