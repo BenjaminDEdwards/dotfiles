@@ -35,7 +35,7 @@ get_aws_profile() {
     updateAWSLoginCache.py $$ > /dev/null 2>&1 &
 
     # Check if the file exists
-    if [[ -f /tmp/aws_current_env ]]; then
+    if [[ -f "/tmp/aws_current_env_$$" ]]; then
         # Read the file's content
         cat "/tmp/aws_current_env_$$"
     else
