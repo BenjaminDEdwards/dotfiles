@@ -20,7 +20,7 @@ aws-set-env() {
     export AWS_PROFILE="$1"
     echo "AWS_PROFILE set to $AWS_PROFILE"
 
-    rm /tmp/aws_env_cache
+    # rm /tmp/aws_env_cache
 
     # echo "Updating env variables"
     # eval "$(aws configure export-credentials --format env)"
