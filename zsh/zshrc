@@ -26,21 +26,21 @@ aws-set-env() {
     # eval "$(aws configure export-credentials --format env)"
     # Run the updateAws command
     echo "Refreshing env cache"
-    updateAWSLoginCache.py --force $$
+    updateAWSLoginCache.py --config="$HOME/.aws/loginConfig.yaml" --force $$
 }
 
 
 get_aws_profile() {
 
-    updateAWSLoginCache.py $$ > /dev/null 2>&1 &
+    updateAWSLoginCache.py --config="$HOME/.aws/loginConfig.yaml" $$ > /dev/null 2>&1 &
 
     # Check if the file exists
     if [[ -f "/tmp/aws_current_env_$$" ]]; then
         # Read the file's content
-        echo "aws: $(cat /tmp/aws_current_env_$$)"
+        echo "aws:$(cat /tmp/aws_current_env_$$)"
     else
         # Return 'ERROR' if the file does not exist
-        echo "aws: refreshing..." 
+        echo "aws:refreshing..." 
     fi
 
 }
