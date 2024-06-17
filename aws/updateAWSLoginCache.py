@@ -11,6 +11,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description="Fetch the aws environment")
 parser.add_argument('pid', type=str, help="current pid")
+parser.add_argument('--force', action='store_true', help='force cache refresh')
 
 args = parser.parse_args()
 
@@ -82,7 +83,7 @@ cached_value = CachedValue(**data)
 now = datetime.now()
 now_ts = int(now.timestamp())
 
-if ( now_ts > cached_value.expires or cached_value.success == False ):
+if ( now_ts > cached_value.expires or cached_value.success == False or args.force == True ):
   print("Cache is stale, regenerate")
   cached = fetchResponse()
 
