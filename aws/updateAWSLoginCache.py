@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import boto3
+from botocore.exceptions import TokenRetrievalError
 from datetime import datetime
 from dataclasses import dataclass, asdict
 import json
@@ -29,6 +30,13 @@ def fetchResponse():
         now.strftime('%Y-%m-%d %H:%M:%S'),
         True
       )
+  except TokenRetrievalError as e:
+    return CachedValue(
+      int(now.timestamp()) + 60,
+      'not-signed-in',
+      now.strftime('%Y-%m-%d %H:%M:%S'),
+      False
+    )
   except Exception as e:
     return CachedValue(
       int(now.timestamp()) + 60,
