@@ -7,9 +7,17 @@ from dataclasses import dataclass, asdict
 import json
 import os
 import sys
+import argparse
 
-plaintext_file = "/tmp/aws_current_env"
-cache_file = "/tmp/aws_env_cache"
+parser = argparse.ArgumentParser(description="Fetch the aws environment")
+parser.add_argument('pid', type=str, help="current pid")
+
+args = parser.parse_args()
+
+plaintext_file = f'/tmp/aws_current_env_{args.pid}'
+cache_file = f'/tmp/aws_env_cache_{args.pid}'
+
+print(f'FILE: {plaintext_file}')
 
 @dataclass(frozen=True)
 class CachedValue:
