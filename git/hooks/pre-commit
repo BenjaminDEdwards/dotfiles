@@ -8,6 +8,7 @@ echo "HI!";
 if command -v scalafmt > /dev/null 2>&1; then
   for file in $(git diff --cached --name-only --diff-filter=ACM | grep 'scala$')
     do
+      echo "Running scalafmt on $file"
       scalafmt $file
       git add $file
     done
