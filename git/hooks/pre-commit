@@ -2,7 +2,6 @@
 
 
 
-echo "HI!";
 # Run scalafmt on all staged Scala files
 
 if command -v scalafmt > /dev/null 2>&1; then
