@@ -3,6 +3,7 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
+	hooksPath = ~/.git/hooks
 [init]
   defaultBranch = main
 [pull]

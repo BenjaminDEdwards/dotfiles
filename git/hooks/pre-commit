@@ -1,0 +1,17 @@
+#!/bin/sh
+
+
+
+echo "HI!";
+# Run scalafmt on all staged Scala files
+
+if command -v scalafmt > /dev/null 2>&1; then
+  for file in $(git diff --cached --name-only --diff-filter=ACM | grep 'scala$')
+    do
+      scalafmt $file
+      git add $file
+    done
+else
+  echo "skipping scalafmt on a .scala file"
+fi
+
