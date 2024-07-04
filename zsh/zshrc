@@ -7,7 +7,11 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-
+aws-sso-login() {
+    aws sso login
+    echo "Refreshing env cache"
+    updateAWSLoginCache.py --config="$HOME/.aws/loginConfig.yaml" --force $$
+}
 
 aws-set-env() {
     # Check if exactly one argument is provided
@@ -32,7 +36,7 @@ aws-set-env() {
 
 get_aws_profile() {
 
-    updateAWSLoginCache.py --config="$HOME/.aws/loginConfig.yaml" $$ > /dev/null 2>&1 &
+    # updateAWSLoginCache.py --config="$HOME/.aws/loginConfig.yaml" $$ > /dev/null 2>&1 &
 
     # Check if the file exists
     if [[ -f "/tmp/aws_current_env_$$" ]]; then
@@ -41,6 +45,7 @@ get_aws_profile() {
     else
         # Return 'ERROR' if the file does not exist
         echo "aws:refreshing..." 
+        updateAWSLoginCache.py --config="$HOME/.aws/loginConfig.yaml" $$ > /dev/null 2>&1 &
     fi
 
 }
