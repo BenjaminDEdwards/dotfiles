@@ -12,7 +12,7 @@ aws-logs-tail() {
     log_group=$( aws logs describe-log-groups --query 'logGroups[].logGroupName' --output text | sed "s/\t/\n/g" | fzf )
     log_stream=$( aws logs describe-log-streams --log-group-name $log_group --output text --query "logStreams[?lastEventTimestamp>\`$two_days_ago_ms\`].logStreamName" | fzf )
 
-    "aws logs tail $log_group --log-stream $log_stream --follow"
+    aws logs tail $log_group --log-stream-names $log_stream --follow
 
 }
 
