@@ -2,6 +2,18 @@
 # Bens zshrc managed in dotfiles
 #
 
+aws-ssm-list() {
+    aws ec2 describe-instances --query 'Reservations[*].Instances[*].Tags[?Key==`Name`].Value' --filters "Name=instance-state-name,Values=running" --output text
+}
+
+aws-ssm-connect() {
+    local name="$1"
+    if [ -z "$name" ]; then
+        name=$(ssm-list | fzf)
+    fi
+    target=$(echo $(aws ec2 describe-instances --filters "Name=tag:Name,Values=$name" "Name=instance-state-name,Values=running" --query 'Reservations[].Instances[].InstanceId' --output text ) | awk '{print $name}' )
+    aws ssm start-session --target $target
+}
 
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
