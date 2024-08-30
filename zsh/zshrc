@@ -6,6 +6,16 @@ aws-ssm-list() {
     aws ec2 describe-instances --query 'Reservations[*].Instances[*].Tags[?Key==`Name`].Value' --filters "Name=instance-state-name,Values=running" --output text
 }
 
+aws-logs-tail() {
+    two_days_ago=$(date --date='-2 days' '+%s')
+    two_days_ago_ms=$((two_days_ago * 1000))
+    log_group=$(echo $(aws logs describe-log-groups --query 'logGroups[].logGroupName' --output text ) | sed "s/\t/\n/g" | fzf
+    log_stream=$( aws logs describe-log-streams --log-group-name $log_group --output text --query "logStreams[?lastEventTimestamp>\`$two_days_ago_ms\`].logStreamName" | fzf )
+
+    echo "aws logs tail $log_group $log_stream"
+
+}
+
 aws-ssm-connect() {
     local name="$1"
     if [ -z "$name" ]; then
